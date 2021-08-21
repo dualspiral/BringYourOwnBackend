@@ -2,6 +2,30 @@
 
 {% set title = "Sponge Downloads" %}
 
+{% from "macros/featured-download.njk" import featuredDownload %}
+{% from "macros/other-download.njk" import otherDownload %}
+
 {% block content %}
-    <h1>Hello There Me</h1>
+
+    <div class="row">
+    {% for name, item in featured %}
+            <div class="col-sm-6 offset-lg-1 col-lg-4">
+                {{ featuredDownload(name, item.title, item.blurb) }}
+            </div>
+    {% endfor %}
+    </div>
+
+    <div class="row">
+        <div class="col hr">
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col sponge-headline">
+            <h2>Other Downloads</h2>
+        </div>
+    </div>
+    {% for name, item in other %}
+        {{ otherDownload(name, item.title) }}
+    {% endfor %}
 {% endblock %}

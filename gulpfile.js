@@ -8,10 +8,15 @@ const autoprefixer = require("gulp-autoprefixer");
 
 const browserSync = require("browser-sync").create();
 
+const config = require("./config.json")
+
 function buildHtml() {
+    let data = config.nunjucksData;
+    data.currentYear = new Date().getFullYear();
     return gulp.src("src/pages/**/*.njk")
         .pipe(nunjucksRender({
-            path: ["src/templates/"]
+            path: ["src/templates/"],
+            data: data
         }))
         .pipe(gulp.dest("build"));
 }
@@ -24,7 +29,7 @@ function buildJavascript() {
 }
 
 function buildStyle() {
-    return gulp.src("src/scss/**/*.scss")
+    return gulp.src("src/scss/**/style.scss")
             .pipe(sass())
             .pipe(autoprefixer())
             .pipe(gulp.dest("build/css"));

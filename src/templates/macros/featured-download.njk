@@ -1,0 +1,11 @@
+{% macro featuredDownload(id, title, blurb) %}
+<div class="featured-download">
+    <div class="platform-logo"><h2>{{ title | safe }}</h2></div>
+    <div>
+        {{ blurb | safe }}
+    </div>
+    <div>
+        <button class="btn btn-primary">Downloads</button>
+    </div>
+</div>
+{% endmacro %}
