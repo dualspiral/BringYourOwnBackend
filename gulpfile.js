@@ -9,7 +9,7 @@ const autoprefixer = require("gulp-autoprefixer");
 const browserSync = require("browser-sync").create();
 
 function buildHtml() {
-    return gulp.src("src/pages/**/index.njk")
+    return gulp.src("src/pages/**/*.njk")
         .pipe(nunjucksRender({
             path: ["src/templates/"]
         }))
@@ -30,7 +30,12 @@ function buildStyle() {
             .pipe(gulp.dest("build/css"));
 }
 
-const build = gulp.parallel([buildHtml, buildJavascript, buildStyle]);
+function copyStatic() {
+    return gulp.src("src/static/**/*.*")
+               .pipe(gulp.dest("build/static"))
+}
+
+const build = gulp.parallel([buildHtml, buildJavascript, buildStyle, copyStatic]);
 
 function initBrowserSync(cb) {
     browserSync.init({
