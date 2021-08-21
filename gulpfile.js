@@ -4,7 +4,7 @@ const tsProject = require("gulp-typescript").createProject("tsconfig.json");
 
 // CSS
 const sass = require("gulp-sass")(require("sass"));
-const autoprefixer = require("autoprefixer");
+const autoprefixer = require("gulp-autoprefixer");
 
 const browserSync = require("browser-sync").create();
 
@@ -30,4 +30,25 @@ function buildStyle() {
             .pipe(gulp.dest("build/css"));
 }
 
-exports.default = gulp.parallel([buildHtml, buildJavascript, buildStyle]);
+const build = gulp.parallel([buildHtml, buildJavascript, buildStyle]);
+
+function initBrowserSync(cb) {
+    browserSync.init({
+        server: {
+            baseDir: "build/"
+        }
+    });
+    cb();
+}
+
+function reloadBrowser(cb) {
+    browserSync.reload();
+    cb();
+}
+
+function watch() {
+    return gulp.watch(["src/"], gulp.series(build, reloadBrowser));
+}
+
+exports.default = build;
+exports.watch = gulp.series([build, initBrowserSync, watch]);
