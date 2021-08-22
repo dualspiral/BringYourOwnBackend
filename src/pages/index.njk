@@ -2,16 +2,16 @@
 
 {% set title = "Sponge Downloads" %}
 
-{% from "macros/featured-download.njk" import featuredDownload %}
-{% from "macros/other-download.njk" import otherDownload %}
+{% from "macros/download-categories.njk" import featuredDownload, otherDownload %}
 
 {% block content %}
-
     <div class="row">
-    {% for name, item in featured %}
+    {% for name, item in products %}
+        {% if item.featured %}
             <div class="col-sm-6 offset-lg-1 col-lg-4">
                 {{ featuredDownload(name, item.title, item.blurb) }}
             </div>
+        {% endif %}
     {% endfor %}
     </div>
 
@@ -25,7 +25,9 @@
             <h2>Other Downloads</h2>
         </div>
     </div>
-    {% for name, item in other %}
-        {{ otherDownload(name, item.title) }}
+    {% for name, item in products %}
+        {% if not item.featured %}
+            {{ otherDownload(name, item.title) }}
+        {% endif %}
     {% endfor %}
 {% endblock %}

@@ -43,6 +43,10 @@ main {
     padding-top: 10px;
 }
 
+#downloads {
+    display: none;
+}
+
 .featured-download {
     padding: 20px 0;
 }
@@ -70,6 +74,20 @@ main {
 
 .hr {
     border-bottom: #000000 1px solid;
+}
+
+.breadcrumb > div {
+    display: inline-block;
+    padding: 0 5px;
+
+    a {
+        color: #999;
+        text-decoration: none;
+
+        &:hover {
+            text-decoration: underline;
+        }
+    }
 }
 
 .platform-logo {
@@ -102,7 +120,7 @@ main {
         }
     }
 
-  }
+}
 
 footer {
     flex-shrink: 0;

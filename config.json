@@ -1,16 +1,16 @@
 {
     "nunjucksData": {
-        "featured": {
+        "products": {
             "spongevanilla": {
                 "title": "Sponge <span class=\"spongevanilla\">Vanilla</span>",
-                "blurb": "The Vanilla implementation of Sponge, perfect for running a Vanilla server with your favorite plugins!"
+                "blurb": "The Vanilla implementation of Sponge, perfect for running a Vanilla server with your favorite plugins!",
+                "featured": true
             },
             "spongeforge": {
                 "title": "Sponge <span class=\"spongeforge\">Forge</span>",
-                "blurb": "Sponge as a Forge mod, letting you run Forge mods and plugins together!"
-            }
-        },
-        "other": {
+                "blurb": "Sponge as a Forge mod, letting you run Forge mods and plugins together!",
+                "featured": true
+            },
             "configurate": {
                 "title": "Configurate"
             },
